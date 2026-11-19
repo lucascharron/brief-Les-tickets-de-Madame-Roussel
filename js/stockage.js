@@ -16,5 +16,9 @@ export function chargerPanier() {
     return { lignes: [], codePromo: "" };
   }
   const donnees = JSON.parse(brut);
-  return { lignes: donnees.lignes || donnees, codePromo: donnees.codePromo || "" };
+  // Les paniers enregistrés par une autre version (la version 1) ne sont pas repris.
+  if (donnees.version !== VERSION) {
+    return { lignes: [], codePromo: "" };
+  }
+  return { lignes: donnees.lignes || [], codePromo: donnees.codePromo || "" };
 }
