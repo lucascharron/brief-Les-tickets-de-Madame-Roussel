@@ -1,5 +1,7 @@
 // Calcul des prix : bouquet, options, sous-total et total de la commande.
 
+import { arrondir } from "./outils.js";
+
 let catalogue = null;
 
 // Garde le catalogue en mémoire pour les calculs.
@@ -26,17 +28,17 @@ export function prixUnitaire(ligne) {
   if (taille) prix += taille.supplement;
   if (options.vase) prix += catalogue.options.vase.prix;
   if (options.carte) prix += catalogue.options.carte.prix;
-  return prix;
+  return arrondir(prix);
 }
 
 // Prix d'une ligne du panier : prix d'un exemplaire multiplié par la quantité.
 export function prixLigne(ligne) {
-  return prixUnitaire(ligne) * ligne.quantite;
+  return arrondir(prixUnitaire(ligne) * ligne.quantite);
 }
 
 // Sous-total du panier, avant remise et livraison.
 export function sousTotal(lignes) {
-  return lignes.reduce((total, ligne) => total + prixLigne(ligne), 0);
+  return arrondir(lignes.reduce((total, ligne) => total + prixLigne(ligne), 0));
 }
 
 // Total à payer : sous-total, moins la remise, plus la livraison.
