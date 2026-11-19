@@ -57,6 +57,6 @@
       { "id": "grand", "libelle": "Grand", "supplement": 15.6 }
     ],
     "vase": { "libelle": "Vase en verre", "prix": 12.9 },
-    "carte": { "libelle": "Carte avec votre message", "prix": 2.5 }
+    "carte": { "libelle": "Carte avec votre message", "prix": 2.5, "longueurMax": 150 }
   }
 }

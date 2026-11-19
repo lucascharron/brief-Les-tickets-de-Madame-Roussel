@@ -23,3 +23,4 @@ Pour chaque hypothèse, dis-moi comment la vérifier dans le navigateur (console
 1. **La limite est une valeur de configuration appliquée par `composition.js`** : retenue. Vérifiée : le `textarea#message-carte` a `maxlength="150"` (onglet Éléments) et `options.carte.longueurMax` vaut `150` dans `data/catalogue.json` (console).
 2. **La limite est appliquée deux fois** (attribut `maxlength` et coupure `slice` dans `lireFormulaire`) : retenue d'après la lecture du code, non mesurée dans le navigateur.
 3. **Le panier ou le stockage coupe le message** : écartée, le panier n'affiche simplement pas le texte du message.
+4. **La limite est voulue** : confirmée plus tard par le cahier des charges (« 150 caractères au plus », carte imprimée de 8 × 5 cm, choix de Madame Roussel avec son imprimeur). La limite est donc conservée et rendue visible par un compteur ; sa suppression n'est possible qu'avec l'accord de Madame Roussel.

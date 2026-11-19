@@ -33,6 +33,7 @@ export function preparerComposition(optionsCatalogue, surAjout) {
     reglesOptions.vase.libelle + " (+ " + formaterPrix(reglesOptions.vase.prix) + ")";
   document.querySelector("#libelle-carte").textContent =
     reglesOptions.carte.libelle + " (+ " + formaterPrix(reglesOptions.carte.prix) + ")";
+  document.querySelector("#message-carte").maxLength = reglesOptions.carte.longueurMax;
 
   document.querySelector("#form-composition").addEventListener("change", lireFormulaire);
   document.querySelector("#message-carte").addEventListener("input", lireFormulaire);
@@ -62,6 +63,7 @@ function remplirFormulaire() {
   document.querySelector("#option-carte").checked = options.carte;
   document.querySelector("#message-carte").value = options.message;
   document.querySelector("#zone-message").hidden = !options.carte;
+  afficherCompteur();
 }
 
 // Lit le formulaire après chaque changement.
@@ -71,9 +73,16 @@ function lireFormulaire() {
   options.vase = document.querySelector("#option-vase").checked;
   options.carte = document.querySelector("#option-carte").checked;
   const message = document.querySelector("#message-carte").value;
-  options.message = options.carte ? message : "";
+  options.message = options.carte ? message.slice(0, reglesOptions.carte.longueurMax) : "";
   document.querySelector("#zone-message").hidden = !options.carte;
+  afficherCompteur();
   afficherPrixComposition();
+}
+
+// Affiche le nombre de caractères du message sur le nombre autorisé.
+function afficherCompteur() {
+  const message = document.querySelector("#message-carte").value;
+  document.querySelector("#compteur-message").textContent = message.length + " / " + reglesOptions.carte.longueurMax;
 }
 
 // Affiche le prix du bouquet tel qu'il est composé.
