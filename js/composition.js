@@ -33,7 +33,6 @@ export function preparerComposition(optionsCatalogue, surAjout) {
     reglesOptions.vase.libelle + " (+ " + formaterPrix(reglesOptions.vase.prix) + ")";
   document.querySelector("#libelle-carte").textContent =
     reglesOptions.carte.libelle + " (+ " + formaterPrix(reglesOptions.carte.prix) + ")";
-  document.querySelector("#message-carte").maxLength = reglesOptions.carte.longueurMax;
 
   document.querySelector("#form-composition").addEventListener("change", lireFormulaire);
   document.querySelector("#message-carte").addEventListener("input", lireFormulaire);
@@ -72,7 +71,7 @@ function lireFormulaire() {
   options.vase = document.querySelector("#option-vase").checked;
   options.carte = document.querySelector("#option-carte").checked;
   const message = document.querySelector("#message-carte").value;
-  options.message = options.carte ? message.slice(0, reglesOptions.carte.longueurMax) : "";
+  options.message = options.carte ? message : "";
   document.querySelector("#zone-message").hidden = !options.carte;
   afficherPrixComposition();
 }
